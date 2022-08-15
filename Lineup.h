@@ -8,12 +8,12 @@
 struct Lineup {
 	Lineup(int one, int two, int three) :
 		deck1(one), deck2(two), deck3(three) {}
-	bool operator<(Lineup& other) {
-		return winrate > other.winrate;
-	}
+	Lineup(int one, int two, int three, int four) :
+		deck1(one), deck2(two), deck3(three), deck4(four) {}
 	std::vector<std::pair<double, int>> ban_order;
 	double weight = 0;
-	double winrate = 0;
+	double bo3_winrate = 0;
+	double bo5_winrate = 0;
 	int deck1;
 	int deck2;
 	int deck3;
