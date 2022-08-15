@@ -16,8 +16,23 @@
 class Solver {
 public:
 	Solver();
+	struct CompBO3 {
+		bool operator()(Lineup& lhs, Lineup& rhs) {
+			return lhs.bo3_winrate > rhs.bo3_winrate;
+		}
+	};
+	struct CompBO5 {
+		bool operator()(Lineup& lhs, Lineup& rhs) {
+			return lhs.bo5_winrate > rhs.bo5_winrate;
+		}
+	};
 	double calculate_winrate_bo3(Lineup& lhs, Lineup& rhs);
 	double calculate_winrate_bo5(Lineup& lhs, Lineup& rhs);
+	void markov_solve_bo3(int LD1, int LD2, int RD1, int RD2, bool lhs1W, bool rhs1W,
+		bool lhs2W, bool rhs2W, double cur_prob, double& winrate);
+	void markov_solve_bo5(int LD1, int LD2, int LD3, int RD1, int RD2, int RD3, 
+		bool lhs1W, bool lhs2W, bool lhs3W, bool rhs1W, bool rhs2W, bool rhs3W,
+		double cur_prob, double& winrate);
 private:
 	int num_decks = -1;
 	std::vector<Deck> decks;
