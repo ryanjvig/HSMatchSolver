@@ -1,6 +1,6 @@
 # HSMatchSolver
 Finds the best lineups for best of 3 and best of 5 game matches given a matchup chart. Also provides weighted individual rankings.  
-The solution operates under the constraints of Hearthstone's Conquest format with bans.  
+Solution is made using Markov chains and operates under the constraints of Hearthstone's Conquest format with bans.  
 Conquest format: https://help.battlefy.com/en/articles/2873888-conquest-format-for-hearthstone-tournaments  
 
 Command line format:  
