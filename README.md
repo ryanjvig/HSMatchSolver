@@ -24,6 +24,58 @@ Control Warrior, .1 w .40 .55 .55 .50 .55 .60 .50
   
 Example Output:  
   
+Best of 5 Lineup Rankings (Unweighted):
+1. Big Spell Mage\Control Murloc Shaman\Holy Paladin\Control Warrior
+Winrate: 0.5433
+2. Big Spell Mage\Thief Rogue\Holy Paladin\Control Warrior
+Winrate: 0.5401
+3. Control Murloc Shaman\Thief Rogue\Holy Paladin\Control Warrior
+Winrate: 0.5252
+4. Fel Demon Hunter\Thief Rogue\Holy Paladin\Control Warrior
+Winrate: 0.5214
+5. Big Spell Mage\Control Murloc Shaman\Thief Rogue\Holy Paladin
+Winrate: 0.5196
+6. Big Spell Mage\Fel Demon Hunter\Thief Rogue\Holy Paladin
+Winrate: 0.5152
+7. Fel Demon Hunter\Control Murloc Shaman\Thief Rogue\Holy Paladin
+Winrate: 0.5097
+8. Big Spell Mage\Control Murloc Shaman\Thief Rogue\Control Warrior
+Winrate: 0.5092
+9. Big Spell Mage\Fel Demon Hunter\Holy Paladin\Control Warrior
+Winrate: 0.5045
+10. Big Spell Mage\Boat Rogue\Holy Paladin\Control Warrior
+Winrate: 0.5040
+11. Fel Demon Hunter\Control Murloc Shaman\Thief Rogue\Control Warrior
+Winrate: 0.5034
+12. Fel Demon Hunter\Boat Rogue\Holy Paladin\Control Warrior
+Winrate: 0.5026
+13. Big Spell Mage\Fel Demon Hunter\Boat Rogue\Holy Paladin
+Winrate: 0.5023
+14. Big Spell Mage\Fel Demon Hunter\Thief Rogue\Control Warrior
+Winrate: 0.5006
+15. Fel Demon Hunter\Control Murloc Shaman\Boat Rogue\Holy Paladin
+Winrate: 0.4959
+16. Big Spell Mage\Fel Demon Hunter\Boat Rogue\Control Warrior
+Winrate: 0.4935
+17. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Holy Paladin
+Winrate: 0.4933
+18. Fel Demon Hunter\Control Murloc Shaman\Holy Paladin\Control Warrior
+Winrate: 0.4923
+19. Control Murloc Shaman\Boat Rogue\Holy Paladin\Control Warrior
+Winrate: 0.4892
+20. Big Spell Mage\Control Murloc Shaman\Boat Rogue\Holy Paladin
+Winrate: 0.4891
+21. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Thief Rogue
+Winrate: 0.4879
+22. Fel Demon Hunter\Control Murloc Shaman\Boat Rogue\Control Warrior
+Winrate: 0.4852
+23. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Control Warrior
+Winrate: 0.4839
+24. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Boat Rogue
+Winrate: 0.4827
+25. Big Spell Mage\Control Murloc Shaman\Boat Rogue\Control Warrior
+Winrate: 0.4775
+
 Best of 3 Lineup Rankings (Unweighted):
 1. Big Spell Mage\Holy Paladin\Control Warrior
 Winrate: 0.5577
@@ -85,58 +137,6 @@ Winrate: 0.4727
 Winrate: 0.4700
 30. Big Spell Mage\Control Murloc Shaman\Boat Rogue
 Winrate: 0.4565
-
-Best of 5 Lineup Rankings (Unweighted):
-1. Big Spell Mage\Control Murloc Shaman\Holy Paladin\Control Warrior
-Winrate: 0.5433
-2. Big Spell Mage\Thief Rogue\Holy Paladin\Control Warrior
-Winrate: 0.5401
-3. Control Murloc Shaman\Thief Rogue\Holy Paladin\Control Warrior
-Winrate: 0.5252
-4. Fel Demon Hunter\Thief Rogue\Holy Paladin\Control Warrior
-Winrate: 0.5214
-5. Big Spell Mage\Control Murloc Shaman\Thief Rogue\Holy Paladin
-Winrate: 0.5196
-6. Big Spell Mage\Fel Demon Hunter\Thief Rogue\Holy Paladin
-Winrate: 0.5152
-7. Fel Demon Hunter\Control Murloc Shaman\Thief Rogue\Holy Paladin
-Winrate: 0.5097
-8. Big Spell Mage\Control Murloc Shaman\Thief Rogue\Control Warrior
-Winrate: 0.5092
-9. Big Spell Mage\Fel Demon Hunter\Holy Paladin\Control Warrior
-Winrate: 0.5045
-10. Big Spell Mage\Boat Rogue\Holy Paladin\Control Warrior
-Winrate: 0.5040
-11. Fel Demon Hunter\Control Murloc Shaman\Thief Rogue\Control Warrior
-Winrate: 0.5034
-12. Fel Demon Hunter\Boat Rogue\Holy Paladin\Control Warrior
-Winrate: 0.5026
-13. Big Spell Mage\Fel Demon Hunter\Boat Rogue\Holy Paladin
-Winrate: 0.5023
-14. Big Spell Mage\Fel Demon Hunter\Thief Rogue\Control Warrior
-Winrate: 0.5006
-15. Fel Demon Hunter\Control Murloc Shaman\Boat Rogue\Holy Paladin
-Winrate: 0.4959
-16. Big Spell Mage\Fel Demon Hunter\Boat Rogue\Control Warrior
-Winrate: 0.4935
-17. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Holy Paladin
-Winrate: 0.4933
-18. Fel Demon Hunter\Control Murloc Shaman\Holy Paladin\Control Warrior
-Winrate: 0.4923
-19. Control Murloc Shaman\Boat Rogue\Holy Paladin\Control Warrior
-Winrate: 0.4892
-20. Big Spell Mage\Control Murloc Shaman\Boat Rogue\Holy Paladin
-Winrate: 0.4891
-21. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Thief Rogue
-Winrate: 0.4879
-22. Fel Demon Hunter\Control Murloc Shaman\Boat Rogue\Control Warrior
-Winrate: 0.4852
-23. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Control Warrior
-Winrate: 0.4839
-24. Big Spell Mage\Fel Demon Hunter\Control Murloc Shaman\Boat Rogue
-Winrate: 0.4827
-25. Big Spell Mage\Control Murloc Shaman\Boat Rogue\Control Warrior
-Winrate: 0.4775
 
 Individual Deck Rankings (Weighted):
 1. Holy Paladin
