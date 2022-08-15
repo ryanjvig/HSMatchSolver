@@ -45,8 +45,58 @@ Solver::Solver() {
 		}
 		decks[i].ewr = wr_sum;
 	}
-	// number of unique lineups is nCr
+
+	// # of unique lineups is nCr
 	// where n is # of classes and r is decks in lineup
+	lineups.reserve(nCr((int)classes.size(), 4));
+	for (int i = 0; i < num_decks; ++i) {
+		for (int j = i + 1; j < num_decks; ++j) {
+			if (decks[j].type == decks[i].type) continue;
+			for (int k = j + 1; k < num_decks; ++k) {
+				if (decks[k].type == decks[j].type) continue;
+				for (int l = k + 1; l < num_decks; ++l) {
+					if (decks[l].type == decks[k].type) continue;
+					lineups.push_back(Lineup(i, j, k, l));
+				}
+			}
+		}
+	}
+	for (auto& i : lineups) {
+		i.ban_order.reserve(num_decks);
+		for (int j = 0; j < num_decks; ++j) {
+			// average winrate against all 4 decks
+			double winrate = (decks[i.deck1].matchups[j] + decks[i.deck2].matchups[j]
+				+ decks[i.deck3].matchups[j] + decks[i.deck4].matchups[j]) / 4;
+			i.ban_order.push_back({ winrate, j });
+		}
+		// will ban ascending by average winrate against deck
+		std::sort(i.ban_order.begin(), i.ban_order.end());
+	}
+	// total_wr = 0;
+	for (auto& i : lineups) {
+		for (auto& j : lineups) {
+			i.bo5_winrate += calculate_winrate_bo5(i, j);
+		}
+		i.bo5_winrate /= lineups.size();
+
+	}
+	/*
+	for (auto& i : lineups) {
+		total_wr += i.bo5_winrate;
+	}
+	total_wr /= lineups.size();
+	std::cout << "\ntotal wr: " << total_wr << "\n";
+	*/
+	std::sort(lineups.begin(), lineups.end(), CompBO5{});
+	std::cout << "Best of 5 Lineup Rankings (Unweighted):\n";
+	for (size_t i = 0; i < lineups.size(); ++i) {
+		std::cout << i + 1 << ". " << decks[lineups[i].deck1].name << '\\' << decks[lineups[i].deck2].name
+			<< '\\' << decks[lineups[i].deck3].name << '\\' << decks[lineups[i].deck4].name << '\n'
+			<< "Winrate: " << lineups[i].bo5_winrate << '\n';
+	}
+
+	// repeat for best of three format
+	lineups.clear();
 	lineups.reserve(nCr((int)classes.size(), 3));
 	for (int i = 0; i < num_decks; ++i) {
 		for (int j = i + 1; j < num_decks; ++j) {
@@ -79,60 +129,13 @@ Solver::Solver() {
 	// total_wr /= lineups.size();
 	// std::cout << "\ntotal wr: " << total_wr << "\n";
 	std::sort(lineups.begin(), lineups.end(), CompBO3{});
-	std::cout << "Best of Three Lineup Rankings (Unweighted):\n";
+	std::cout << "\nBest of 3 Lineup Rankings (Unweighted):\n";
 	for (size_t i = 0; i < lineups.size(); ++i) {
 		std::cout << i + 1 << ". " << decks[lineups[i].deck1].name << '\\' << decks[lineups[i].deck2].name
 			<< '\\' << decks[lineups[i].deck3].name << '\n'
 			<< "Winrate: " << lineups[i].bo3_winrate << '\n';
 	}
-	// repeat expanded to best of five format
-	lineups.clear();
-	lineups.reserve(nCr((int)classes.size(), 4));
-	for (int i = 0; i < num_decks; ++i) {
-		for (int j = i + 1; j < num_decks; ++j) {
-			if (decks[j].type == decks[i].type) continue;
-			for (int k = j + 1; k < num_decks; ++k) {
-				if (decks[k].type == decks[j].type) continue;
-				for (int l = k + 1; l < num_decks; ++l) {
-					if (decks[l].type == decks[k].type) continue;
-					lineups.push_back(Lineup(i, j, k, l));
-				}
-			}
-		}
-	}
-	for (auto& i : lineups) {
-		i.ban_order.reserve(num_decks);
-		for (int j = 0; j < num_decks; ++j) {
-			// average winrate against all 4 decks
-			double winrate = (decks[i.deck1].matchups[j] + decks[i.deck2].matchups[j]
-				+ decks[i.deck3].matchups[j] + decks[i.deck4].matchups[j]) / 4;
-			i.ban_order.push_back({ winrate, j });
-		}
-		// will ban ascending by average winrate against deck
-		std::sort(i.ban_order.begin(), i.ban_order.end());
-	}
-	// total_wr = 0;
-	for (auto& i : lineups) {
-		for (auto& j : lineups) {
-			i.bo5_winrate += calculate_winrate_bo5(i, j);
-		}
-		i.bo5_winrate /= lineups.size();
-		
-	}
-	/*
-	for (auto& i : lineups) {
-		total_wr += i.bo5_winrate;
-	}
-	total_wr /= lineups.size();
-	std::cout << "\ntotal wr: " << total_wr << "\n";
-	*/
-	std::sort(lineups.begin(), lineups.end(), CompBO5{});
-	std::cout << "\nBest of Five Lineup Rankings (Unweighted):\n";
-	for (size_t i = 0; i < lineups.size(); ++i) {
-		std::cout << i + 1 << ". " << decks[lineups[i].deck1].name << '\\' << decks[lineups[i].deck2].name
-			<< '\\' << decks[lineups[i].deck3].name << '\\' << decks[lineups[i].deck4].name << '\n'
-			<< "Winrate: " << lineups[i].bo5_winrate << '\n';
-	}
+
 
 	// don't sort until the end to maintain indices for lineups
 	std::sort(decks.begin(), decks.end());
