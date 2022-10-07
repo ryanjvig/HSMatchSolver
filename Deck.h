@@ -14,13 +14,7 @@ struct Deck {
 	bool operator<(Deck& other) {
 		return ewr > other.ewr;
 	}
-	/*
-	Deck& operator=(const Deck& other) {
-		matchups = other.matchups;
-		name = other.name;
-		type = other.type;
-	}
-	*/
+
 	std::vector<double> matchups;
 	std::string name;
 	double ewr;
