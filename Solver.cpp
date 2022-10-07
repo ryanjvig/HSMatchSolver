@@ -80,14 +80,9 @@ Solver::Solver() {
 		i.bo5_winrate /= lineups.size();
 
 	}
-	/*
-	for (auto& i : lineups) {
-		total_wr += i.bo5_winrate;
-	}
-	total_wr /= lineups.size();
-	std::cout << "\ntotal wr: " << total_wr << "\n";
-	*/
+	
 	std::sort(lineups.begin(), lineups.end(), CompBO5{});
+	// output results
 	std::cout << "Best of 5 Lineup Rankings (Unweighted):\n";
 	for (size_t i = 0; i < lineups.size(); ++i) {
 		std::cout << i + 1 << ". " << decks[lineups[i].deck1].name << '\\' << decks[lineups[i].deck2].name
@@ -126,9 +121,10 @@ Solver::Solver() {
 		i.bo3_winrate /= lineups.size();
 		// total_wr += i.bo3_winrate;
 	}
-	// total_wr /= lineups.size();
-	// std::cout << "\ntotal wr: " << total_wr << "\n";
+
+	
 	std::sort(lineups.begin(), lineups.end(), CompBO3{});
+	// output best of three results
 	std::cout << "\nBest of 3 Lineup Rankings (Unweighted):\n";
 	for (size_t i = 0; i < lineups.size(); ++i) {
 		std::cout << i + 1 << ". " << decks[lineups[i].deck1].name << '\\' << decks[lineups[i].deck2].name
@@ -137,8 +133,9 @@ Solver::Solver() {
 	}
 
 
-	// don't sort until the end to maintain indices for lineups
+	// don't sort until here to maintain indices for lineups
 	std::sort(decks.begin(), decks.end());
+	// output weighted deck results
 	std::cout << "\nIndividual Deck Rankings (Weighted):\n";
 	for (int i = 0; i < num_decks; ++i) {
 		std::cout << i + 1 << ". " << decks[i].name << "\nWinrate: " << decks[i].ewr << '\n';
@@ -189,6 +186,7 @@ double Solver::calculate_winrate_bo3(Lineup& lhs, Lineup& rhs) {
 		lhs2 = lhs.deck2;
 	}
 	double winrate = 0.0;
+	// run markov chain to find winrate
 	markov_solve_bo3(lhs1, lhs2, rhs1, rhs2, false, false, false, false, 1.0, winrate);
 	return winrate;
 }
@@ -253,9 +251,11 @@ double Solver::calculate_winrate_bo5(Lineup& lhs, Lineup& rhs) {
 		lhs3 = lhs.deck3;
 	}
 	double winrate = 0.0;
+	// run markov chain to find winrate
 	markov_solve_bo5(lhs1, lhs2, lhs3, rhs1, rhs2, rhs3, false, false, false, false, false, false, 1.0, winrate);
 	return winrate;
 }
+// absorbing markov chain for best of three match
 void Solver::markov_solve_bo3(int LD1, int LD2, int RD1, int RD2, bool lhs1W, bool rhs1W,
 	bool lhs2W, bool rhs2W, double cur_prob, double& winrate) {
 	if (rhs1W && rhs2W) return;
@@ -285,6 +285,7 @@ void Solver::markov_solve_bo3(int LD1, int LD2, int RD1, int RD2, bool lhs1W, bo
 		}
 	}
 }
+// absorbing markov chain for best of five match
 void Solver::markov_solve_bo5(int LD1, int LD2, int LD3, int RD1, int RD2, int RD3,
 	bool lhs1W, bool lhs2W, bool lhs3W, bool rhs1W, bool rhs2W, bool rhs3W,
 	double cur_prob, double& winrate) {
